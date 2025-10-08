@@ -7,62 +7,117 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <h1>Barangay Tanglaw - Grade 7 CVSU</h1>
-    </header>
+    <div id="contentWrapper">
+      <header>
+        <h1>Barangay Tanglaw - Grade 7 CVSU</h1>
+        <p>Building unity, leadership, and excellence among students</p>
+      </header>
 
-    <section id="about">
-      <h2>About Us</h2>
-      <p>
-        Barangay Tanglaw represents the unity and cooperation of Grade 7 CVSU
-        students. We aim to promote teamwork, leadership, and academic
-        excellence within our school and community.
-      </p>
-    </section>
+      <section id="about">
+        <h2>About Us</h2>
+        <p>
+          Barangay Tanglaw represents the Grade 7 students of Cavite State University.
+          Our mission is to promote collaboration, discipline, and respect among members.
+          We strive to make a positive impact both in academics and in our community.
+        </p>
+        <p>
+          Through various programs, we aim to nurture leadership and foster a sense of responsibility.
+          Together, we light the path — <strong>isang barangay, isang tanglaw!</strong>
+        </p>
+      </section>
 
-    <section id="officers">
-      <h2>Meet Our Officers</h2>
-      <ul>
-        <li>Barangay President: Nathan Ayos</li>
-        <li>Barangay Vice President: Gianna Ferrer</li>
-        <li>Barangay Treasurer: Thea Francine V. Aman</li>
-      </ul>
-    </section>
+      <section id="officers">
+        <h2>Meet Our Officers</h2>
+        <div class="officer-grid">
+          <div class="officer-card">
+            <h3>Nathan Ayos</h3>
+            <p>Barangay President</p>
+          </div>
+          <div class="officer-card">
+            <h3>Gianna Ferrer</h3>
+            <p>Barangay Vice President</p>
+          </div>
+          <div class="officer-card">
+            <h3>Thea Francine V. Aman</h3>
+            <p>Barangay Treasurer</p>
+          </div>
+        </div>
+      </section>
 
-    <!-- Cookie Consent Popup -->
+      <section id="announcements">
+        <h2>Latest Announcements</h2>
+        <ul>
+          <li><strong>October 10:</strong> Barangay Assembly and Clean-Up Drive</li>
+          <li><strong>October 15:</strong> Leadership Workshop for Officers</li>
+          <li><strong>October 22:</strong> “Tanglaw Festival” – celebrating teamwork and unity</li>
+        </ul>
+      </section>
+
+      <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery">
+          <div class="photo">Classroom Projects</div>
+          <div class="photo">Barangay Meeting</div>
+          <div class="photo">Community Service</div>
+          <div class="photo">Sports Day</div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Have questions or suggestions? Send us a message below!</p>
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <input type="text" id="name" placeholder="Your Name" required />
+          <input type="email" id="email" placeholder="Your Email" required />
+          <textarea id="message" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+        <p id="formMessage" class="hidden">Thank you for contacting us!</p>
+      </section>
+
+      <footer>
+        <p>© 2025 Barangay Tanglaw | Cavite State University - Grade 7</p>
+      </footer>
+    </div>
+
+    <!-- Cookie Popup -->
     <div class="cookie-popup" id="cookiePopup">
       <div class="cookie-card">
-        <p>
-          🍪 This site uses cookies to improve your browsing experience.
-        </p>
+        <p>🍪 This website uses cookies to improve your browsing experience.</p>
         <button id="acceptCookies">Accept</button>
       </div>
     </div>
 
     <script>
-      // Render backend logging
       const backendURL = "https://your-render-url.onrender.com/log";
 
+      // Log IP
       window.onload = () => {
-        fetch(backendURL)
-          .then(() => console.log("Visitor logged"))
-          .catch(() => console.warn("Backend offline"));
+        fetch(backendURL).catch(() => console.warn("Backend offline"));
       };
 
-      // Cookie popup logic
-      const cookiePopup = document.getElementById("cookiePopup");
-      const acceptBtn = document.getElementById("acceptCookies");
+      // Cookie popup
+      const popup = document.getElementById("cookiePopup");
+      const content = document.getElementById("contentWrapper");
+      const accept = document.getElementById("acceptCookies");
 
       if (!localStorage.getItem("cookiesAccepted")) {
-        cookiePopup.style.display = "flex";
-        document.body.classList.add("blurred");
+        popup.style.display = "flex";
+        content.classList.add("blurred");
       }
 
-      acceptBtn.addEventListener("click", () => {
+      accept.addEventListener("click", () => {
         localStorage.setItem("cookiesAccepted", "true");
-        cookiePopup.style.display = "none";
-        document.body.classList.remove("blurred");
+        popup.style.display = "none";
+        content.classList.remove("blurred");
       });
+
+      // Contact form simulation
+      function handleSubmit(event) {
+        event.preventDefault();
+        document.getElementById("formMessage").classList.remove("hidden");
+        event.target.reset();
+      }
     </script>
   </body>
 </html>
