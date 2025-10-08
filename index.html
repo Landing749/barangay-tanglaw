@@ -1,133 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Barangay Tanglaw - Grade 7 CVSU</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f7f9fc;
-      color: #333;
-      text-align: center;
-      transition: filter 0.3s ease;
-    }
-    header {
-      background: #006b3c; /* CVSU green */
-      color: white;
-      padding: 20px;
-    }
-    h1 { margin: 0; }
-    section { padding: 20px; }
-
-    .officers {
-      margin-top: 20px;
-      background: #fff;
-      padding: 15px;
-      border-radius: 10px;
-      max-width: 400px;
-      margin: 20px auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    .cookie-popup {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background: #007f43;
-      color: white;
-      padding: 15px 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      z-index: 999;
-      max-width: 300px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      backdrop-filter: blur(10px);
-    }
-
-    .cookie-popup button {
-      background: white;
-      color: #007f43;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      align-self: flex-end;
-      transition: background 0.3s ease;
-    }
-
-    .cookie-popup button:hover {
-      background: #e6f3ea;
-    }
-
-    .blurred {
-      filter: blur(5px);
-    }
-
-    footer {
-      margin-top: 30px;
-      background: #006b3c;
-      color: white;
-      padding: 10px;
-      font-size: 14px;
-    }
-  </style>
-</head>
-<body>
-  <div id="pageContent">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barangay Tanglaw - Grade 7 CVSU</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <header>
       <h1>Barangay Tanglaw - Grade 7 CVSU</h1>
-      <p>Welcome to our official barangay page!</p>
     </header>
 
-    <section>
-      <h2>About Barangay Tanglaw</h2>
+    <section id="about">
+      <h2>About Us</h2>
       <p>
-        Barangay Tanglaw is a vibrant student community representing Grade 7 of Cavite State University (CVSU).
-        We aim to promote leadership, unity, and participation among all members.
+        Barangay Tanglaw represents the unity and cooperation of Grade 7 CVSU
+        students. We aim to promote teamwork, leadership, and academic
+        excellence within our school and community.
       </p>
     </section>
 
-    <section>
+    <section id="officers">
       <h2>Meet Our Officers</h2>
-      <div class="officers">
-        <p><strong>Barangay President:</strong> Nathan Ayos</p>
-        <p><strong>Barangay Vice President:</strong> Gianna Ferrer</p>
-        <p><strong>Barangay Treasurer:</strong> Thea Francine V. Aman</p>
-      </div>
+      <ul>
+        <li>Barangay President: Nathan Ayos</li>
+        <li>Barangay Vice President: Gianna Ferrer</li>
+        <li>Barangay Treasurer: Thea Francine V. Aman</li>
+      </ul>
     </section>
-  </div>
 
-  <div class="cookie-popup" id="cookiePopup">
-    <span>This website uses cookies to ensure you get the best experience.</span>
-    <button onclick="acceptCookies()">Got it!</button>
-  </div>
+    <!-- Cookie Consent Popup -->
+    <div class="cookie-popup" id="cookiePopup">
+      <div class="cookie-card">
+        <p>
+          🍪 This site uses cookies to improve your browsing experience.
+        </p>
+        <button id="acceptCookies">Accept</button>
+      </div>
+    </div>
 
-  <footer>
-    © 2025 Barangay Tanglaw — Grade 7 CVSU
-  </footer>
+    <script>
+      // Render backend logging
+      const backendURL = "https://your-render-url.onrender.com/log";
 
-  <script>
-    function acceptCookies() {
-      localStorage.setItem('cookieAccepted', 'true');
-      document.getElementById('cookiePopup').style.display = 'none';
-      document.getElementById('pageContent').classList.remove('blurred');
-    }
+      window.onload = () => {
+        fetch(backendURL)
+          .then(() => console.log("Visitor logged"))
+          .catch(() => console.warn("Backend offline"));
+      };
 
-    window.onload = () => {
-      const popup = document.getElementById('cookiePopup');
-      const page = document.getElementById('pageContent');
-      if (localStorage.getItem('cookieAccepted') === 'true') {
-        popup.style.display = 'none';
-      } else {
-        page.classList.add('blurred');
+      // Cookie popup logic
+      const cookiePopup = document.getElementById("cookiePopup");
+      const acceptBtn = document.getElementById("acceptCookies");
+
+      if (!localStorage.getItem("cookiesAccepted")) {
+        cookiePopup.style.display = "flex";
+        document.body.classList.add("blurred");
       }
-    };
-  </script>
-</body>
+
+      acceptBtn.addEventListener("click", () => {
+        localStorage.setItem("cookiesAccepted", "true");
+        cookiePopup.style.display = "none";
+        document.body.classList.remove("blurred");
+      });
+    </script>
+  </body>
 </html>
