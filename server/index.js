@@ -1,19 +1,21 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 
-app.use(express.static("public")); // serve your front-end if you want to include it later
+// Serve static files (your frontend)
+app.use(express.static(path.join(__dirname, "../")));
 
 app.get("/", (req, res) => {
-  res.send("Backend is live!");
+  res.sendFile(path.join(__dirname, "../index.html"));
 });
 
-// Simple IP logger (for personal testing only)
+// Log visitor IP
 app.get("/log", (req, res) => {
   const ip =
     req.headers["x-forwarded-for"]?.split(",")[0] ||
     req.socket.remoteAddress;
   console.log(`Visitor IP: ${ip}`);
-  res.send("Logged!");
+  res.sendStatus(200);
 });
 
 const port = process.env.PORT || 3000;
