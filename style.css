@@ -1,0 +1,60 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background-color: #f5fff5;
+  color: #222;
+  text-align: center;
+  transition: filter 0.3s ease;
+}
+
+header {
+  background-color: #007f3e;
+  color: white;
+  padding: 20px;
+}
+
+section {
+  padding: 30px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.cookie-popup {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.cookie-card {
+  background-color: rgba(0, 128, 0, 0.85);
+  color: white;
+  padding: 20px 25px;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.cookie-card button {
+  background-color: white;
+  color: #007f3e;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cookie-card button:hover {
+  background-color: #e5ffe5;
+}
+
+.blurred {
+  filter: blur(4px);
+}
